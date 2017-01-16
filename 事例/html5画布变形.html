@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="400" height="300"></canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext('2d');
+
+        cxt.save(); //初始状态
+        cxt.translate(100, 100);
+        cxt.save(); //位移变形状态
+        cxt.rotate(-Math.PI / 4);
+        cxt.save(); //旋转变形状态
+        cxt.scale(2, 2);
+        cxt.fillStyle = "orange";
+        cxt.fillRect(0, 0, 50, 50);
+        cxt.restore();   //恢复到旋转状态
+        cxt.fillStyle = 'green';
+        cxt.fillRect(0, 0, 50, 50);
+        cxt.restore(); //恢复到位移状态
+        cxt.fillStyle = 'black';
+        cxt.fillRect(0, 0, 50, 50);
+        cxt.restore(); //恢复到初始状态;
+        cxt.fillStyle = 'red';
+        cxt.fillRect(0, 0, 50, 50)
+    }
+</script>
+</body>
+</html>

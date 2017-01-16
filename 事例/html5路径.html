@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="600" height="400"></canvas>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext('2d');
+
+        cxt.beginPath();
+        cxt.moveTo(100, 20);
+        cxt.lineTo(200, 160);
+        cxt.quadraticCurveTo(230, 200, 250, 120);
+        cxt.bezierCurveTo(290, -40, 300, 200, 400, 150);
+        cxt.lineTo(500, 90);
+        cxt.lineWidth = 15;
+        cxt.strokeStyle = 'green';
+        cxt.stroke();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        var cv = document.getElementById('canvas');
+        var cxt = cv.getContext('2d');
+
+        //例子 1  绘制矩形
+        /*
+         cxt.strokeRect(20, 20, 100, 100);
+         cxt.fillRect(40, 40, 50, 50);
+         cxt.clearRect(50, 50, 30, 30)
+         */
+
+
+        // 例子2  绘制路径
+        /*
+         cxt.beginPath();
+         cxt.moveTo(150, 150);
+         cxt.lineTo(150, 250);
+         cxt.lineTo(300, 250);
+         cxt.stroke();
+         cxt.closePath();
+         */
+        /*
+         cxt.beginPath();
+         cxt.moveTo(150, 200);
+         cxt.lineTo(200, 300);
+         cxt.lineTo(150, 300);
+         cxt.fill();
+         cxt.closePath();
+         */
+
+        //例子 3 画弧
+        /*
+        cxt.beginPath();
+        cxt.arc(70, 70, 50, 0, Math.PI / 2, true);
+        cxt.stroke();
+
+        cxt.beginPath();
+        cxt.arc(180, 70, 50, 0, Math.PI / 2, false);
+        cxt.stroke();
+
+        cxt.beginPath();
+        cxt.arc(300, 70, 50, 0, Math.PI / 2, true);
+        cxt.fill();
+
+        cxt.beginPath();
+        cxt.arc(400, 70, 50, 0, Math.PI / 2, false);
+        cxt.fill();
+        */
+
+
+        //例子 4 二次曲线
+        /*
+        cxt.beginPath();
+        cxt.lineWidth = 10;
+        cxt.moveTo(100, 200);
+        cxt.quadraticCurveTo(150, 50, 200, 200);
+        cxt.strokeStyle = 'orange';
+        cxt.stroke();
+        */
+
+        //例子 5 贝赛尔曲线
+        //bezierCurveTo
+        /*
+             controllpoint1X,
+             controllpoint1Y,
+             controllpoint2X,
+             controllpoint2Y,
+             endingpointX,
+             endingpointY
+        */
+        /*
+        cxt.beginPath();
+        cxt.moveTo(188, 130);
+        cxt.bezierCurveTo(140, 10, 300, 10, 388, 170);
+        cxt.lineWidth = 10;
+        cxt.strokeStyle = 'orange';
+        cxt.stroke();
+        */
+    }
+</script>
+</body>
+</html>

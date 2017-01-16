@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800"></canvas>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext('2d');
+
+
+
+        drawStar(cxt, 150, 300, 400, 400, 0);
+
+        function drawStar(cxt, r, R, x, y, rot){
+            /*
+            * r: 小圆半径
+            * R: 大圆半径
+            * x: x轴偏移量
+            * y: y轴偏移量
+            * */
+            cxt.beginPath();
+            for(var i = 0; i < 5; i++){
+                cxt.lineTo(Math.cos((18 + i * 72 - rot) / 180 * Math.PI) * R + x, -Math.sin((18 + i * 72 - rot) / 180 * Math.PI) * R + y)
+                cxt.lineTo(Math.cos((54 + i * 72 - rot) / 180 * Math.PI) * r + x, -Math.sin((54 + i * 72 - rot) / 180 * Math.PI) * r + y)
+            }
+            cxt.closePath();
+            cxt.strokeStyle = 'green';
+            cxt.lineWidth = 10;
+            cxt.stroke();
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="550" height="300"></canvas>
+
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext('2d');
+
+
+        function wrapText(cxt, text, x, y, maxWidth, lineHeight){
+            var words = text.split('');
+            var line = '';
+
+            for(var n = 0; n < words.length; n++){
+                var testLine = line + words[n];
+                var metrics = cxt.measureText(testLine);
+                var testWidth = metrics.width;
+
+                if(testWidth > maxWidth){ //此处判断文字宽度是否超过可显示最大宽度
+                    cxt.fillText(line, x, y);
+                    line = words[n];
+                    y += lineHeight; //此处设置添加文字到下一行的位置
+                }else{
+                    line = testLine;
+                }
+            }
+            cxt.fillText(line, x, y);
+        };
+
+
+        var maxWidth = 500,
+            lineHeight = 30,
+            x = (canvas.width - maxWidth) / 2,
+            y = 60,
+            text = '这个是把一段文字拆解成字符串数吧？ 还有不知道这表达什么意义，难道是把 单独的字符串起来吗？不知道有空可以解答下吗？这里使用split把整句拆分成文字，然后判断是谢谢了这里使用split把整句拆分成文字，然后判断是';
+
+        cxt.font = 'bold 15pt "microsoft yahei"';
+        cxt.fillStyle = '#dd4814';
+
+        wrapText(cxt, text, x, y, maxWidth, lineHeight)
+
+    }
+</script>
+</body>
+</html>

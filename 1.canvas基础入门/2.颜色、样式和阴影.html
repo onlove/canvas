@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+<script>
+    window.onload = function () {
+        var casvas = document.getElementById('canvas');
+        cxt = casvas.getContext('2d');
+
+        //例子 1 色彩样式
+        /*for(var i = 1; i < 6; i++){
+         for(var j = 1; j < 6; j++){
+         cxt.fillStyle = 'rgb(' + Math.floor(255 - 42.5 * i) + ',' + Math.floor(255-42.5 * j) + ', 0)';
+         cxt.fillRect(j * 25, i * 25, 25, 25)
+         }
+         }*/
+
+        //例子 2 线形样式
+        /*
+         cxt.strokeStyle = 'green';
+         for(var i = 0; i < 10; i++){
+         cxt.lineWidth = i + 1;
+         cxt.beginPath();
+         cxt.moveTo(25 + i * 14, 25);
+         cxt.lineTo(25 + i * 14, 140);
+         cxt.stroke();
+         }*/
+
+        //例子 3 线条末端样式
+        /*
+         butt 线段末端以方形结束 默认值
+         round 线段末端以圆形结束。
+         square 线段末端以方形结束，但是增加了一个宽度和线段相同，高度是线段厚度一半的矩形区域。
+         */
+        /*
+         var type = ['butt', 'round', 'square'];
+         cxt.strokeStyle = "green";
+         for(var i = 0; i < 3; i++){
+         cxt.lineWidth = 10;
+         cxt.lineCap = type[i];
+         cxt.beginPath();
+         cxt.moveTo(25 + i * 30, 25);
+         cxt.lineTo(25 + i * 30, 140);
+         cxt.stroke();
+         }
+         */
+
+        //例子 4 设定线条与线条间接合处的样式
+        /*
+         var type = ['round', 'bevel', 'miter'];
+         cxt.strokeStyle = "green";
+         for(var i = 0; i < 3; i++){
+         cxt.lineWidth = 10;
+         cxt.beginPath();
+         cxt.lineJoin = type[i];
+         cxt.miterLimit = 10;
+         cxt.moveTo(20 + i * 20, 20);
+         cxt.lineTo(40 + i * 50 + 50, 80);
+         cxt.lineTo(30 + i * 35, 180)
+         cxt.stroke();
+         }
+         */
+
+
+        //例子 5 设置虚线
+        /*
+         cxt.beginPath();
+         cxt.moveTo(20, 80);
+         cxt.lineTo(100, 80);
+         cxt.setLineDash([6, 10]);
+         cxt.lineDashOffset = 3;
+         cxt.strokeStyle = "green";
+         cxt.stroke();
+         */
+
+        //例子 6 线性渐变
+        //createLinearGradient(x1, y1, x2, y2)
+        //  表示渐变的起点 (x1,y1) 与终点 (x2,y2)
+        //gradient.addColorStop(position, color)
+        /*addColorStop
+         position 参数必须是一个 0.0 与 1.0 之间的数值，表示渐变中颜色所在的相对位置。例如，0.5 表示颜色会出现在正中间。
+         color 参数必须是一个有效的 CSS 颜色值（如 #FFF， rgba(0,0,0,1)，等等）。
+         */
+        /*
+         var linearGradient = cxt.createLinearGradient(50, 50, 250, 250);
+         linearGradient.addColorStop(0, 'yellow');
+         linearGradient.addColorStop(.5, 'red');
+         linearGradient.addColorStop(1, 'green');
+         cxt.fillStyle = linearGradient;
+         cxt.fillRect(50, 50, 200, 200)
+         */
+
+
+        //例子 7 径向渐变
+        //createRadialGradient
+        //  前三个定义一个以 (x1,y1) 为原点，半径为 r1 的圆，
+        //  后三个参数则定义另一个以 (x2,y2) 为原点，半径为 r2 的圆。
+        /*
+         var rr = cxt.createRadialGradient(100, 100, 40, 100, 100, 100);
+         rr.addColorStop(0, 'red');
+         rr.addColorStop(.5, 'yellow');
+         rr.addColorStop(1, 'blue');
+         cxt.fillStyle = rr;
+         cxt.fillRect(20, 20, 160, 160);
+         cxt.fill();*/
+        /*
+         var rr2 = cxt.createRadialGradient(250, 250, 20, 260, 260, 50);
+         rr2.addColorStop(0, 'red');
+         rr2.addColorStop(.5, 'yellow');
+         rr2.addColorStop(1, 'blue');
+         cxt.fillStyle = rr2;
+         cxt.fillRect(50, 50, 400, 400);
+         cxt.fill();
+         */
+
+
+
+        //例子 8 图案样式
+        /*
+        var img = new Image();
+        img.src = 'images/2.png';
+        img.onload = function(){
+            var ptrn = cxt.createPattern(img, 'repeat');
+            cxt.fillStyle = ptrn;
+            cxt.fillRect(250, 250, 80, 80);
+            cxt.fill();
+        }*/
+
+        //例子 9 图片阴影
+        /*
+        var imgObj = new Image();
+        imgObj.src = 'images/1.png';
+        imgObj.onload = function(){
+            cxt.shadowOffsetX = 10;
+            cxt.shadowOffsetY = 10;
+            cxt.shadowBlur = 8;
+            cxt.shadowColor = "#333";
+            cxt.drawImage(imgObj, 100, 50)
+        }
+        */
+
+        //例子 10 Canvas 填充规则
+        // "nonzero": 默认值. "evenodd
+        /*
+        cxt.beginPath();
+        cxt.arc(100, 100, 50, 0, Math.PI * 2, true);
+        cxt.arc(100, 100, 20, 0, Math.PI * 2, true);
+        cxt.fill("evenodd");
+        */
+
+
+    }
+</script>
+</body>
+</html>

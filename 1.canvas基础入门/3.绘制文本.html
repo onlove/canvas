@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="550" height="300"></canvas>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext('2d');
+
+        //例子 1  文字
+        /*
+        cxt.font = 'bold 30pt "microsoft yahei"';
+        cxt.fillStyle = '#ff0000';
+        cxt.fillText('welcome canvas', 50, 150)
+        */
+
+        //例子 2 描边文字
+        /*
+        cxt.font = 'bold 30pt "microsoft yahei"';
+        cxt.strokeStyle = '#ff0000';
+        cxt.strokeText('welcome canvas', 50, 150);
+        */
+
+        //例子 3 设置文字水平对齐
+        /*
+        cxt.font = 'bold 30pt "microsoft yahei"';
+        cxt.textAlign = 'center';
+        cxt.strokeStyle = '#ff0000';
+        cxt.strokeText('welcome canvas', 275, 180);
+        */
+
+        //例子 4 设置文字垂直对齐
+        /*
+             top
+             bottom
+             middle
+             hanging
+             alphabetic
+             ideographic
+        */
+        /*
+        cxt.font = 'bold 30pt "microsoft yahei"';
+        cxt.textAlign = 'center';
+        cxt.textBaseline = 'alphabetic';
+        cxt.fillStyle = '#2efd23';
+        cxt.fillText('welcome canvas', 275, 150)
+        */
+
+        // 例子 5 获取文字度量
+
+        var x = canvas.width / 2, y = canvas.height / 2 - 10;
+        var text = 'welcome canvas';
+        cxt.font = 'bold 30pt "microsoft yahei"';
+        cxt.textAlign = "center";
+        cxt.fillStyle = 'red';
+        cxt.fillText(text, x, y);
+
+        var metrics = cxt.measureText(text);
+        var width = metrics.width;
+
+        cxt.font = '15pt Arial';
+        cxt.textAlign = 'center';
+        cxt.fillStyle = 'orange';
+        cxt.fillText('-' + width + 'px-', x, y + 45)
+
+    }
+</script>
+</body>
+</html>

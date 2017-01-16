@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script>
+    window.onload = function (){
+        var canvas = document.getElementById('canvas'),
+            cxt = canvas.getContext('2d');
+
+        //window.requestAnimationFrame()
+        /*
+        *
+        * if (!window.requestAnimationFrame) {
+                 window.requestAnimationFrame = (window.webkitRequestAnimationFrame ||
+                 window.mozRequestAnimationFrame ||
+                 window.msRequestAnimationFrame ||
+                 window.oRequestAnimationFrame ||
+                 function (callback) {
+                    return window.setTimeout(callback, 17 );
+                 });
+         }
+         */
+    }
+</script>
+</body>
+</html>

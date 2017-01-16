@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            border: 1px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="450"></canvas>
+<canvas id="tempCanvas" width="578" height="450" style="display:none;"></canvas>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+        var cxt = canvas.getContext('2d');
+
+
+        //例子 1 合成
+        var tempCanvas = document.getElementById('tempCanvas');
+        var tempCxt = tempCanvas.getContext('2d');
+
+        var squareWidth = 55;
+        var circeRadius = 35;
+        var shapeOffset = 50;
+        var operationOffset = 150;
+        var arr = ['source-over', 'source-in ', 'source-out', 'source-atop', 'lighter', 'xor', 'destination-over',
+            'destination-in', 'destination-out', 'destination-atop', 'darker', 'copy'];
+
+
+        //globalCompositeOperation
+
+        //     source-over        （默认值） 新图形会覆盖在原有内容之上
+        //     source-in           新图形仅仅会出现与原有内容重叠的部分，其他区域都变成透明的。
+        //     source-out          只有新图形中与原有内容不重叠的部分会被绘制出来
+        //     source-atop         新图形中与原有内容重叠部分会被绘制，并覆盖于原有内容之上。
+        //     lighter             两图形中重叠部分作加色处理
+        //     xor                 重叠部分会变成透明
+        //     destination-over    会在原有内容之上绘制新图形
+        //     destination-in      原有内容与新图形重叠的部分会被保留，其他部分变成透明的
+        //     destination-out     原有内容中与新图形不重叠的部分会被保留
+        //     destination-atop    原有内容中与新图形重叠部分会被保留，并会在原有内容之上绘制新图形
+        //     darker              两图形重叠部分作减色处理
+        //     copy                只有新图形会被保留，其他都被清除掉
+
+        for(var n = 0; n < arr.length; n++){
+            var thisOperation = arr[n];
+            tempCxt.save();
+
+            // 清楚图形
+            tempCxt.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制矩形
+            tempCxt.beginPath();
+            tempCxt.rect(0, 0, squareWidth, squareWidth);
+            tempCxt.fillStyle = 'orange';
+            tempCxt.fill();
+
+            // 设置全局组合
+            tempCxt.globalCompositeOperation = thisOperation;
+
+            //绘制圆形
+            tempCxt.beginPath();
+            tempCxt.arc(shapeOffset, shapeOffset, circeRadius, 0, 2 * Math.PI, false);
+            tempCxt.fillStyle = 'brown';
+            tempCxt.fill();
+            tempCxt.restore();
+
+            //书写文字
+            tempCxt.font = '10pt microsoft yahei';
+            tempCxt.fillStyle = 'green';
+            tempCxt.fillText(thisOperation, 0, squareWidth + 55);
+
+            if(n > 0){
+                if(n % 4 === 0){
+                    cxt.translate(operationOffset * -3, operationOffset)
+                }else{
+                    cxt.translate(operationOffset, 0)
+                }
+            }
+
+            cxt.drawImage(tempCanvas, 0, 0)
+        }
+
+
+
+        // 例子 2 裁切路径
+        /*
+        var img = new Image();
+        img.src = '../images/3.jpg';
+        img.onload = function(){
+            cxt.beginPath();
+            cxt.arc(120, 100, 60, 0, 2 * Math.PI, true);
+            cxt.clip();
+            cxt.drawImage(img, 10, 10)
+        }*/
+
+
+
+        //例子 3 自定义裁切区域
+        /*
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+        var radius = 80;
+        var offset = 50;
+        cxt.save(); //保存剪裁前的上线文状态，以保证可以返回未设置剪裁区域前的状态
+        cxt.beginPath();
+        cxt.rect(x-80, y-80, 160, 160);
+        cxt.clip();
+
+        // 在指定剪裁区域绘制一个橙色的圆形
+        cxt.beginPath();
+        cxt.arc(x - offset, y - offset, radius, 0, 2 * Math.PI, false);
+        cxt.fillStyle = 'orange';
+        cxt.fill();
+
+        // 在指定剪裁区域绘制一个绿色的圆形
+        cxt.beginPath();
+        cxt.arc(x + offset, y, radius, 0, 2 * Math.PI, false);
+        cxt.fillStyle = 'green';
+        cxt.fill();
+
+        // 在指定剪裁区域绘制一个红色的圆形
+        cxt.beginPath();
+        cxt.arc(x, y + offset, radius, 0, 2 * Math.PI, false);
+        cxt.fillStyle = 'red';
+        cxt.fill();
+
+        cxt.restore();
+        cxt.beginPath();
+        cxt.rect(x - 80, y - 80, 160, 160);
+        cxt.lineWidth = 10;
+        cxt.strokeStyle = '#555';
+        cxt.stroke();
+        */
+
+    }
+</script>
+</body>
+</html>

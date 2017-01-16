@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas {
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="400" height="300"></canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+            cxt = canvas.getContext('2d');
+
+        //例子 1 位移
+        /*
+        cxt.fillRect(0, 0, 100, 100);
+        cxt.save();
+        cxt.translate(60, 60);
+        cxt.fillStyle = "red";
+        cxt.fillRect(0, 0, 100, 100);
+        cxt.restore();
+        */
+
+
+        //例子 2 旋转
+        /*
+        cxt.beginPath();
+        cxt.moveTo(0, 50);
+        cxt.lineTo(100, 50);
+        cxt.stroke();
+        cxt.save();
+        cxt.rotate(Math.PI / 12);
+        cxt.strokeStyle = 'red';
+        cxt.beginPath();
+        cxt.moveTo(0, 50);
+        cxt.lineTo(100, 50);
+        cxt.stroke();
+        cxt.restore();
+        */
+
+        //例子 3 绽放
+        /*
+        cxt.fillRect(20, 20, 50, 50);
+        cxt.save();
+        cxt.scale(.5, .5);
+        cxt.fillStyle = 'red';
+        cxt.fillRect(20, 20, 50, 50);
+        */
+
+
+
+        //例子 4 变形
+        // transform
+        /*
+        *  a: 水平绽放
+        *  b: 水平倾斜
+        *  c: 垂直倾斜
+        *  d: 垂直绽放
+        *  e: 水平位移
+        *  f: 垂直位移
+        * */
+        //注意： 变形只影响调用transform方法以后的图形
+        /*
+        cxt.transform(1, 0.5, 0.5, 1, 100, 100);
+        cxt.fillStyle = 'orange';
+        cxt.fillRect(0, 0, 100, 50)
+        */
+
+
+        //例子 5 阴影效果
+        /*
+        cxt.translate(200, 200);
+        cxt.font = "30pt miscrosoft yahei, Arial, sans-serif";
+        cxt.textAlign = 'center';
+        cxt.fillStyle = 'orange';
+        cxt.fillText("welcome canvas", 0, 0);
+        cxt.translate(0, 20);
+        cxt.scale(1, -1);
+        cxt.transform(1, 0, -0.7, 0.7, 0, 0);
+        cxt.textAlign = 'center';
+        cxt.fillStyle = 'red';
+        cxt.fillText("welocome canvas", 0, 0);
+        */
+
+        //例子 6 重置变形
+        cxt.translate(100, 100);
+        cxt.fillStyle = "orange";
+        cxt.fillRect(0, 0, 100, 100);
+        cxt.setTransform(1, 0, 0, 1, 0, 0);
+        cxt.fillStyle="black";
+        cxt.fillRect(0, 0, 100, 100)
+    }
+</script>
+</body>
+</html>

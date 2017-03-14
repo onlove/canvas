@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa;display: block;margin: 0 auto"></canvas>
+
+<script>
+    var searchLight = {
+        x: 400,
+        y: 400,
+        radius: 150,
+        vx: Math.random() * 5 + 10,
+        vy: Math.random() * 5 + 10
+    };
+
+    var isIncrease = true;
+
+
+    window.onload = function () {
+
+        var canvas = document.getElementById('canvas');
+
+        canvas.width = 800;
+        canvas.height = 800;
+
+        var cxt = canvas.getContext('2d');
+
+        setInterval(function () {
+            draw(cxt);
+            update(canvas.width, canvas.height);
+        }, 40);
+
+        function draw (cxt) {
+            var canvas = cxt.canvas;
+
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+
+            cxt.save();
+            cxt.beginPath();
+            cxt.fillStyle = 'black';
+            cxt.fillRect(0, 0, canvas.width, canvas.height);
+
+            cxt.save();
+            cxt.translate(searchLight.x, searchLight.y);
+            cxt.scale(searchLight.radius, searchLight.radius);
+            starPath(cxt);
+            cxt.fillStyle = '#fff';
+            cxt.fill();
+            cxt.restore();
+            cxt.clip();
+
+            cxt.font = 'bold 150px Arial';
+            cxt.textAlign = 'center';
+            cxt.baseline = 'middle';
+            cxt.fillStyle = '#058';
+            cxt.fillText('CANVAS', canvas.width / 2, canvas.height / 4);
+            cxt.fillText('CANVAS', canvas.width / 2, canvas.height / 2);
+            cxt.fillText('CANVAS', canvas.width / 2, canvas.height * 3 / 4);
+
+            cxt.restore();
+        }
+
+        function update(canvasWidth, canvasHeight) {
+
+            if(searchLight.radius > 700) {
+                isIncrease = false;
+            } else if (searchLight.radius < 150) {
+                isIncrease = true;
+            }
+
+            if(isIncrease)
+                searchLight.radius += 5;
+            else
+                searchLight.radius -= 5;
+
+        }
+
+        function starPath(cxt) {
+            cxt.beginPath();
+            for(var i = 0; i < 5; i++){
+                cxt.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI), -Math.sin((18 + i * 72) / 180 * Math.PI));
+                cxt.lineTo(Math.cos((54 + i * 72) / 180 * Math.PI) * 0.5, -Math.sin((54 + i * 72) / 180 * Math.PI) * 0.5)
+            }
+            cxt.closePath();
+        }
+    }
+</script>
+</body>
+</html>

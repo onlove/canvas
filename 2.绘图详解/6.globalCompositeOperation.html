@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas{
+            display: block;
+            margin: 0 auto;
+            width: 800px;
+            height: 800px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" class="canvas"></canvas>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById('canvas');
+
+            canvas.width = 800;
+            canvas.height = 800;
+
+            var cxt = canvas.getContext('2d');
+
+            cxt.fillStyle = 'blue';
+            cxt.fillRect(100, 200, 400, 400);
+            cxt.globalCompositeOperation = 'source-over';
+            cxt.fillStyle = 'red';
+            cxt.beginPath();
+            cxt.moveTo(400, 300);
+            cxt.lineTo(650, 700);
+            cxt.lineTo(150, 700);
+            cxt.closePath();
+            cxt.fill();
+        }
+    </script>
+</body>
+</html>

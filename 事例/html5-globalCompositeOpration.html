@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #buttons {
+            margin: 10px auto;
+            width: 1200px;
+            clear: both;
+        }
+        #buttons a {
+            font-size: 18px;
+            display: block;
+            float: left;
+            margin-right:14px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" style="border:1px solid #aaa;display: block;margin: 0 auto"></canvas>
+    <div id="buttons">
+        <a href="javascript:;">source-over</a>
+        <a href="javascript:;">source-atop</a>
+        <a href="javascript:;">source-in</a>
+        <a href="javascript:;">source-out</a>
+        <a href="javascript:;">destination-over</a>
+        <a href="javascript:;">destination-atop</a>
+        <a href="javascript:;">destination-in</a>
+        <a href="javascript:;">destination-out</a>
+        <a href="javascript:;">lighter</a>
+        <a href="javascript:;">copy</a>
+        <a href="javascript:;">xor</a>
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            draw('source-over');
+
+            var buttons = document.getElementById('buttons').getElementsByTagName('a');
+
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].onclick = function () {
+                    draw(this.text);
+                    return false;
+                }
+            }
+
+
+            function draw(compositeStyle) {
+                var canvas = document.getElementById('canvas');
+
+                canvas.width = 1200;
+                canvas.height = 800;
+
+                var cxt = canvas.getContext('2d');
+
+                cxt.clearRect(0, 0, canvas.width, canvas.height);
+
+                cxt.font = 'bold 40px Arial';
+                cxt.textAlign = 'center';
+                cxt.textBaseline = 'middle';
+                cxt.fillStyle = '#058';
+                cxt.fillText('globalCompositeOperation =' + compositeStyle, canvas.width / 2, 60);
+
+                cxt.fillStyle = 'blue';
+                cxt.fillRect(300, 150, 500, 500);
+
+                cxt.globalCompositeOperation = compositeStyle;
+                cxt.fillStyle = 'red';
+                cxt.beginPath();
+                cxt.moveTo(700, 250);
+                cxt.lineTo(1000, 750);
+                cxt.lineTo(400, 750);
+                cxt.closePath();
+                cxt.fill();
+            }
+        }
+    </script>
+</body>
+</html>
